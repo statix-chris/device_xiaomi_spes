@@ -29,14 +29,9 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_spes
 TARGET_RECOVERY_DEVICE_MODULES := libinit_spes
 
 # Kernel
+BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)-kernel
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-KERNEL_DEFCONFIG := vendor/spes-perf_defconfig
-KERNEL_CUSTOM_LLVM := true
-KERNEL_FULL_LLVM := true
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6225
-
-BOARD_KERNEL_CMDLINE +=  init.is_dt2w_sensor=1
-BOARD_KERNEL_CMDLINE +=  init.is_st2w_sensor=1
 
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := spes,spesn
@@ -54,6 +49,7 @@ SOONG_CONFIG_SENSORS_XIAOMI_USES_SINGLE_TAP_SENSOR := true
 # Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 
 # Inherit from the proprietary version
 include vendor/xiaomi/spes/BoardConfigVendor.mk
