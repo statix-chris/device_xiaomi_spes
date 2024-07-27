@@ -81,10 +81,12 @@ PRODUCT_SYSTEM_PROPERTIES += \
 TARGET_USE_HIDL_QTI_HEALTH := true
 
 # Kernel
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)-kernel/Image
+TARGET_KERNEL_VERSION := 4.19
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)-kernel/kernel
 
 PRODUCT_COPY_FILES += \
-    $(TARGET_PREBUILT_KERNEL):kernel
+    $(TARGET_PREBUILT_KERNEL):kernel \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)-kernel/vendor-modules,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
 
 PRODUCT_VENDOR_KERNEL_HEADERS += $(LOCAL_PATH)-kernel/kernel-headers
 
